@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Cursor Death</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <script type="importmap">
+      {
+        "imports": {
+        }
+      }
+    </script>
+
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <canvas id="game"></canvas>
+
+    <div id="ui">
+      <div id="startScreen">
+        <div id="titleWrapper">
+          <div id="titleTrail"></div>
+          <div id="titleText">Cursor death</div>
+        </div>
+        <div id="subtitle"></div>
+        <div id="clickToBegin">click to begin hell</div>
+
+        <div id="leaderboard">
+          <h2>longest survivors</h2>
+          <div class="leaderboard-rows">
+            <div class="leaderboard-row" id="leaderboardRow1"></div>
+            <div class="leaderboard-divider"></div>
+            <div class="leaderboard-row" id="leaderboardRow2"></div>
+          </div>
+        </div>
+      </div>
+
+      <div id="timer">00.00</div>
+
+      <!-- Instant replay controls -->
+      <div id="replayControls">
+        <button id="watchReplayButton">watch instant replay</button>
+      </div>
+    </div>
+
+    <script type="module" src="main.js"></script>
+  <script defer src="https://static.cloudflareinsights.com/beacon.min.js/v8c78df7c7c0f484497ecbca7046644da1771523124516" integrity="sha512-8DS7rgIrAmghBFwoOTujcf6D9rXvH8xm8JQ1Ja01h9QX8EzXldiszufYa4IFfKdLUKTTrnSFXLDkUEOTrZQ8Qg==" data-cf-beacon='{"version":"2024.11.0","token":"4c6229722a6346bc8eb5cb0e5eae5d41","server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
+</body>
+</html>
+

@@ -1,0 +1,264 @@
+@font-face {
+  font-family: "CursorComic";
+  src: url("./Comic Sans MS.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+* {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow: hidden;
+  background: #ffffff;
+  font-family: "CursorComic", "Comic Sans MS", "Comic Sans", system-ui,
+    -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+body {
+  position: relative;
+}
+
+#game {
+  display: block;
+  width: 100vw;
+  height: 100vh;
+}
+
+/* UI overlay */
+
+#ui {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  color: #000;
+}
+
+/* Timer (HUD only) */
+#timer {
+  position: absolute;
+  top: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 28px;
+  display: none;
+  pointer-events: none;
+}
+
+/* START SCREEN */
+
+#startScreen {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  pointer-events: auto;
+}
+
+/* Instant replay controls */
+#replayControls {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: none;
+  pointer-events: auto;
+}
+
+#replayControls button {
+  font-family: inherit;
+  font-size: 16px;
+  padding: 6px 14px;
+  border: 1px solid #000;
+  background: #fff;
+  cursor: pointer;
+}
+
+/* Title with slide + trail */
+
+#titleWrapper {
+  position: relative;
+  margin-bottom: 10px;
+  overflow: visible;
+  animation: title-slide-down 0.9s ease-out forwards;
+}
+
+#titleText {
+  font-size: 40px;
+  letter-spacing: 0.06em;
+  text-transform: lowercase;
+  position: relative;
+  z-index: 2;
+  /* simple text shadow trail */
+  text-shadow:
+    0px 0px 0px rgba(0, 0, 0, 0.4),
+    2px 2px 0px rgba(0, 0, 0, 0.25),
+    4px 4px 0px rgba(0, 0, 0, 0.15);
+}
+
+#titleTrail {
+  position: absolute;
+  left: -3px;
+  right: 3px;
+  top: 4px;
+  bottom: -4px;
+  background: rgba(0, 0, 0, 0.06);
+  /* simpler, softer trail */
+  filter: blur(4px);
+  z-index: 1;
+  opacity: 0;
+  animation: title-trail 0.9s ease-out forwards;
+  /* Remove visual trail entirely */
+  display: none;
+}
+
+/* Subtitle typing */
+
+#subtitle {
+  min-height: 1.2em;
+  font-size: 16px;
+  margin-bottom: 18px;
+  white-space: nowrap;
+}
+
+/* Click to begin hell – blinking */
+
+#clickToBegin {
+  font-size: 20px;
+  margin-bottom: 22px;
+  cursor: pointer;
+  user-select: none;
+  /* no animation by default; added via JS */
+}
+
+#clickToBegin.blink {
+  animation: blink 1s steps(2, start) infinite;
+}
+
+/* Leaderboard */
+
+#leaderboard {
+  text-align: center;
+  max-width: 320px;
+}
+
+#leaderboard h2 {
+  margin: 0 0 8px 0;
+  font-size: 18px;
+  position: relative;
+  left: 5px; /* move text 5px to the right */
+}
+
+.leaderboard-rows {
+  display: flex;
+  flex-direction: row; /* two columns: row1 and row2 side by side */
+  align-items: flex-start;
+  justify-content: center;
+  gap: 8px;
+}
+
+.leaderboard-row {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1 1 0;
+}
+
+.leaderboard-divider {
+  width: 1px;
+  background: rgba(0, 0, 0, 0.15);
+  margin: 0 4px;
+}
+
+.leaderboard-entry {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 14px;
+}
+
+.leaderboard-entry .rank {
+  width: 22px;
+  text-align: right;
+}
+
+.leaderboard-entry .avatar {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.leaderboard-entry .name {
+  max-width: 120px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.leaderboard-entry .time {
+  font-variant-numeric: tabular-nums;
+  margin-left: 6px;
+}
+
+/* Utility: hide start screen entirely */
+
+.hidden-screen {
+  display: none !important;
+}
+
+/* Animations */
+
+@keyframes title-slide-down {
+  0% {
+    transform: translateY(-80px);
+    opacity: 0;
+  }
+  40% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(0px);
+    opacity: 1;
+  }
+}
+
+@keyframes title-trail {
+  0% {
+    opacity: 0;
+    transform: translateY(-40px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+}
+
+@keyframes blink {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.2;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/* When we want the start screen back without animations */
+.no-anim #titleWrapper,
+.no-anim #titleTrail,
+.no-anim #clickToBegin {
+  animation: none !important;
+}
+
